@@ -14,6 +14,12 @@ module.exports = async (hre) => {
   // hre.deployments
 };
 
-module.exports = async ({ getNamedAccounts, deployments }) => {};
+module.exports = async ({ getNamedAccounts, deployments }) => {
+  // Getting the deployment data from deployments
+  const { deploy, log } = deployments;
+  // Getting accounts named to deployed
+  const { deployed } = await getNamedAccounts;
+  const chainId = network.config.chainId;
+};
 
 // Versão mais compacta do modelo da Função Anônima^^
