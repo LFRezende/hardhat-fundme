@@ -31,7 +31,34 @@ Remember to number your projects as the following:
 Then, add the file .env to the project.
 Remember to check if the .gitignore contains it.
 
+To reference them in other files:
+
+`const OBJ = process.env.OBJ;`
+
 ## Contract with external imports
 
 If you want to add a package like:
 `yarn add --dev @chainlink/contracts`
+
+# Deploying a contract
+
+Code your main async function in your deploy script.
+If must be one of these three:
+
+- Easier way:
+  `async function main(){
+    hre.getNamedAccounts
+    hre.deployments
+}
+module.exports.default = deployFunc`
+
+- Using anonymous functions and the whole hardhat run environment:
+  `module.exports = async (hre) =>{
+    const {getNamedAccounts, deployments} = hre;
+} 
+`
+
+- Using the above with syntatic sugar:
+  `module.exports = async({getNamedAccounts, deployments}) => {}`
+
+`yarn hardhat deploy`
