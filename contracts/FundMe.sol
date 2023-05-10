@@ -20,7 +20,7 @@ contract FundMe {
     function fund() public payable {
         // Minimum in USD
         // 1. Eth to contract
-        require(msg.value.getConversionRate() >= 1e18, "Send more"); // Math done in WEI. 1ETH=1e18;
+        require(msg.value.getConversionRate(priceFeed) >= 1e18, "Send more"); // Math done in WEI. 1ETH=1e18;
         // revert: desfaz tudo de antes e devolve todo o gás que vem depois do require
         funders.push(msg.sender);
         funderToAmount[msg.sender] += msg.value;

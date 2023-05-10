@@ -27,9 +27,13 @@ Remember to number your projects as the following:
 
 ## Introducing the .env folder
 
-`- yarn add --dev dotenv`
+`yarn add --dev dotenv`
 Then, add the file .env to the project.
 Remember to check if the .gitignore contains it.
+
+After that, in your config file, add:
+
+`require("dotenv)".config();`
 
 To reference them in other files:
 
