@@ -39,6 +39,9 @@ To reference them in other files:
 
 `const OBJ = process.env.OBJ;`
 
+And remember to add OBJ to the .env file, like:
+`OBJ = something`
+
 ## Contract with external imports
 
 If you want to add a package like:
@@ -51,10 +54,10 @@ If must be one of these three:
 
 - Easier way:
   `async function main(){
-    hre.getNamedAccounts
-    hre.deployments
-}
-module.exports.default = deployFunc`
+  hre.getNamedAccounts
+  hre.deployments
+  }
+  module.exports.default = deployFunc
 
 - Using anonymous functions and the whole hardhat run environment:
   `module.exports = async (hre) =>{

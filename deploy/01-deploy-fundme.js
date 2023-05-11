@@ -1,3 +1,6 @@
+const { network } = require("hardhat"); // BEWARE THE CURLY --> GRABS ONLY AN OBJECT FROM THE PACKAGE CALLED NETWORK.
+const { networkConfig } = require("../helper-hardhat-config");
+
 function deployFunc() {
   console.log("Hi!!!!");
 }
@@ -18,8 +21,18 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
   // Getting the deployment data from deployments
   const { deploy, log } = deployments;
   // Getting accounts named to deployed
-  const { deployed } = await getNamedAccounts;
+  const { deployer } = await getNamedAccounts;
+  // Getting the chain id
   const chainId = network.config.chainId;
+
+  const address = networkConfig[chainId]["ethUsdPriceFeed"];
+
+  // Deploying the contract without the address in mind (modularized)
+  const fundMe = deploy("FundMe", {
+    from: deployer,
+    args: [address],
+    log: true,
+  });
 };
 
 // Versão mais compacta do modelo da Função Anônima^^

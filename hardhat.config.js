@@ -1,6 +1,6 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("hardhat-deploy");
-require("dotenv");
+require("dotenv").config(); // BEWARE .CONFIG()
 const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL;
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 /** @type import('hardhat/config').HardhatUserConfig */
@@ -17,10 +17,7 @@ module.exports = {
     deployer: {
       default: {
         default: 0,
-        5: 1,
-      },
-      user: {
-        default: 2,
+        5: 0,
       },
     },
   },
