@@ -11,5 +11,5 @@ const networkConfig = {
 };
 
 module.exports = {
-  networkConfig
+  networkConfig,
 };
