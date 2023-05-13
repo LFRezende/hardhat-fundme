@@ -71,3 +71,11 @@ If must be one of these three:
   `module.exports = async({getNamedAccounts, deployments}) => {}`
 
 `yarn hardhat deploy`
+
+## Working with contracts on multiple versions
+
+Go to your config file and set solidity in the module exports as:
+
+`solidity: {
+    compilers: [{ version: "0.8.8" }, { version: "0.6.6" }],
+  },`
