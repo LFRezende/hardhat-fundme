@@ -2,11 +2,11 @@
 
 ## Initializing hardhat
 
-`yarn init
+`yarn init`
 
-yarn add --dev hardhat
+`yarn add --dev hardhat`
 
-yarn hardhat`
+`yarn hardhat`
 
 - If you are not going to utilize the hardhat-deploy and wish to use a deploy.js script, remember to add to it the following line:
 
