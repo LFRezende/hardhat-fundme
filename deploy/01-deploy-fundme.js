@@ -28,7 +28,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
   const address = networkConfig[chainId]["ethUsdPriceFeed"];
 
   // Deploying the contract without the address in mind (modularized)
-  const fundMe = deploy("FundMe", {
+  const fundMe = await deploy("FundMe", {
     from: deployer,
     args: [address],
     log: true,
