@@ -79,3 +79,20 @@ Go to your config file and set solidity in the module exports as:
 `solidity: {
     compilers: [{ version: "0.8.8" }, { version: "0.6.6" }],
   },`
+
+## Deploying your contract in hardhat chain (MockV3Aggregator)
+
+Having imported previously the packages for your smart contract to work (as the following snippet):
+
+`yarn add --dev @chainlink/contracts`
+
+Now, create a folder "test" in the contracts folder. Then, add a file called "MockV3Aggregator.sol"
+
+In it, add some code like this:
+
+`//SPDX-License-Identifier: MIT`
+`pragma solidity ^0.6.0`
+`import "@chainlink/contracts/src/v0.6/interfaces/AggregatorV3Interface.sol";`
+
+To see if your mock needs constructor inputs, go to node-modules and find it in the test folder of the respective contract.
+

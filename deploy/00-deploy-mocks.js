@@ -3,7 +3,7 @@ const {
   developmentChains,
   DECIMALS,
   INITIAL_ANSWER,
-} = require("../helper-hardhat-config");
+} = require("../helper-hardhat-config"); // U MUST EXPORT IT IN THE HELPER-CONFIG!!! And prefer passing as strings!
 
 module.exports = async ({ getNamedAccounts, deployments }) => {
   const { deploy, log } = deployments;
