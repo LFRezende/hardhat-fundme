@@ -96,3 +96,7 @@ In it, add some code like this:
 
 To see if your mock needs constructor inputs, go to node-modules and find it in the test folder of the respective contract.
 
+## --> CAUTIONS <--
+
+1. Remember, always, to export the features you wish to import in other files via module.exports = {} in your root file;
+2. Don't forget () in functions :3
