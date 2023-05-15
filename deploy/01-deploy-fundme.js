@@ -6,7 +6,9 @@ const {
   INITIAL_ANSWER,
 } = require("../helper-hardhat-config"); // Pega apenas o networkConfig do helper-hardhat-config.js
 
-const { getNamedAccounts } = require("hardhat");
+const { getNamedAccounts } = require("hardhat"); // Always import it for getting names
+const { verify } = require("../utils/verify");
+
 /*function deployFunc() {
   console.log("Hi!!!!");
 }
@@ -30,7 +32,6 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
   const { deployer } = await getNamedAccounts();
   // Getting the chain id
   const chainId = network.config.chainId;
-  console.log("HERE!");
   let ethUsdPriceFeedAddress;
   if (developmentChains.includes(network.name)) {
     ethUsdAggregator = await deployments.get("MockV3Aggregator");
@@ -38,14 +39,21 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
   } else {
     ethUsdPriceFeedAddress = networkConfig[chainId]["ethUsdPriceFeed"];
   }
-  console.log("HERE!");
   // Deploying the contract without the address in mind (modularized)
+  const args = [ethUsdPriceFeedAddress];
   const fundMe = await deploy("FundMe", {
     from: deployer,
-    args: [ethUsdPriceFeedAddress],
+    args: args,
     log: true,
   });
-  console.log("HERE!");
+
+  // Verifying the Contract
+  if (
+    !developmentChains.includes(network.name) &&
+    process.env.ETHERSCAN_API_KEY
+  ) {
+    await verify(fundMe.address, args);
+  }
 };
 
 // Versão mais compacta do modelo da Função Anônima^^
