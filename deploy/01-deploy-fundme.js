@@ -45,6 +45,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     from: deployer,
     args: args,
     log: true,
+    waitConfirmations: network.config.blockConfirmations || 1,
   });
 
   // Verifying the Contract

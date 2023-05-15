@@ -96,6 +96,58 @@ In it, add some code like this:
 
 To see if your mock needs constructor inputs, go to node-modules and find it in the test folder of the respective contract.
 
+## Verifying your contract
+
+One way of verifying your contract is by adding a folder to your project (utils) and add a verify.js.
+
+Use the function as it is written in the script.
+
+Remember to add the associated parameters in the .env
+In your hardhat.config.js, remember to add the associated testnet (goerli) to your project, as well as the etherscan dict. (Cagarei pro gasReporter right now);
+
+```
+module.exports = {
+  defaultNetwork: "hardhat",
+  networks:{
+    goerli:{
+      url: process.env.GOERLI_RPC_URL,
+      accounts: [process.env.PRIVATE_KEY],
+      chainId: 5,
+      blockConfirmations: 6
+    },
+  }
+  etherscan:{
+    apiKey: process.env.ETHERSCAN_API_KEY,
+  },
+}
+```
+
+In yout deploy script, remember to add:
+`const {verify} = require("../utils/verify");`
+
+Then, add the following:
+
+```
+ const args = [ethUsdPriceFeedAddress];
+if (
+    !developmentChains.includes(network.name) &&
+    process.env.ETHERSCAN_API_KEY
+  ) {
+    await verify(fundMe.address, args);
+  }
+```
+
+At last, don't forget to add the the "waitConfirmations" in your fundme contract.
+
+```
+const fundMe = await deploy("FundMe", {
+   from: deployer,
+   args: args,
+   log: true,
+   waitConfirmations: network.config.blockConfirmations || 1,
+ });
+```
+
 ## --> CAUTIONS <--
 
 1. Remember, always, to export the features you wish to import in other files via module.exports = {} in your root file;

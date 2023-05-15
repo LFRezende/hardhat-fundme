@@ -13,11 +13,16 @@ module.exports = {
     goerli: {
       url: GOERLI_RPC_URL,
       accounts: [PRIVATE_KEY],
+      chainId: 5,
+      blockConfirmations: 6,
     },
   },
   namedAccounts: {
     deployer: {
       default: 0,
     },
+  },
+  etherscan: {
+    apiKey: process.env.ETHERSCAN_API_KEY,
   },
 };

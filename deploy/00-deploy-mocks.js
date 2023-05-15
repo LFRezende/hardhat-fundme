@@ -16,8 +16,11 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
       log: true,
       args: [DECIMALS, INITIAL_ANSWER],
     });
+    log("Mocks deployed!");
+  } else {
+    log("TESTNET --> NO MOCKS");
   }
-  log("Mocks deployed!");
+
   log("----------------------------------------------------------------");
 };
 
